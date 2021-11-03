@@ -1,0 +1,12 @@
+version: "2"
+services:
+  mongodb-server:
+    container_name: mongodb-server
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks: 
+      - agario-network
+
+networks:
+  agario-network:

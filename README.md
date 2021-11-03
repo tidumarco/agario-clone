@@ -1,3 +1,1 @@
-# TODO:
-
- - Try to make it work!# agario-clone
+My clone of Agario game

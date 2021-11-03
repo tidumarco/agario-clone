@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="style.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Agario-clone</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <canvas id="gameboard"></canvas>
+  <div id="leaderboard">
+    <fieldset>
+      <legend>Leaderboard</legend>
+    </fieldset>
+  </div>
+  <div id="login">
+    <fieldset>
+      <legend>
+        <strong>Login</strong>
+      </legend>
+      <div>
+        <p>
+          Player: <input type="text" id="name" size="10" maxlength="10">
+          Password: <input type="password" id="password" size="10" maxlength="20"> <br />
+          <input id="login_button" type="submit" value="Login" onclick="login()">
+          <input id="register_button" type="submit" value="Register" onclick="register()">
+        </p>
+      </div>
+    </fieldset>
+  </div>
+
+  <script>
+    function login() {
+      let username = document.getElementById('name').value;
+      let password = document.getElementById('password').value;
+      platform.login(username, password);
+      
+      /*
+      axios({
+        url: 'http://localhost:8080/api/v1/login',
+        method: 'post',
+        data: {
+          username: username,
+          password: password  // Lähtee selkokielisenä tekstinä!?
+        }
+      })
+        .then(function (response) {
+          console.log(response);
+          if (response.data == "succeeded") {
+            //Fade to gameboard
+            initGame(username, password);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        */
+    }
+    function register() {
+      let name = document.getElementById('name').value;
+      let password = document.getElementById('password').value;
+
+      platform.register(name, password);
+      /*
+      axios({
+        url: 'http://localhost:8080/api/v1/register',
+        method: 'post',
+        data: {
+          username: username,
+          password: password  // Lähtee selkokielisenä tekstinä!?
+        }
+      })
+        .then(function (response) {
+          console.log(response);
+          if (response.data == "succeeded") {
+            //Fade to gameboard
+            console.log("registration successful");
+          }
+          else {
+            console.log("registration failed:", response);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        */
+    }
+  </script>
+  <script src="platform.js"></script>
+ <!-- <script src="game.js"></script> -->
+</body>
+
+</html>
